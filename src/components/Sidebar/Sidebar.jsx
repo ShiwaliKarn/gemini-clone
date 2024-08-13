@@ -5,17 +5,25 @@ import { FaRegMessage } from "react-icons/fa6";
 import { GoQuestion } from "react-icons/go";
 import { VscHistory } from "react-icons/vsc";
 import { MdOutlineSettings } from "react-icons/md";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Context } from '../../context/Context';
+
 
 const Sidebar = () => {
 
     const [extended, setExtented] = useState(false);
+    const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
+
+const loadPrompt = async (prompt) =>{
+    setRecentPrompt(prompt);
+    await onSent(prompt);
+}
 
     return (
         <div className='sidebar'>
             <div className="top">
-                <IoMdMenu className='menu' onClick={()=>setExtented(prev=>!prev)} />
-                <div className="new-chat">
+                <IoMdMenu className='menu' onClick={() => setExtented(prev => !prev)} />
+                <div className="new-chat" onClick={()=>newChat()}>
                     <BiPlus />
                     {extended ? <p>New Chat</p> : null}
                 </div>
@@ -24,10 +32,15 @@ const Sidebar = () => {
                         <p className="recent-title">
                             Recent
                         </p>
-                        <div className="recent-entry">
-                            <FaRegMessage />
-                            <p>What is react?....</p>
-                        </div>
+                        {prevPrompts.map((item, index) => {
+                            return (
+                                <div className="recent-entry" onClick={()=>loadPrompt(item)}>
+                                    <FaRegMessage />
+                                    <p>{item.slice(0,18)}...</p>
+                                </div>
+                            )
+                        })}
+
                     </div>
                     : null
                 }
