@@ -40,15 +40,15 @@ const Main = () => {
           <div className="search-box">
             <input type="text" placeholder='Enter a prompt here' />
             <div>
-            <RiImageAddLine />
-            <MdOutlineMicNone />
-            <VscSend />
+              <RiImageAddLine />
+              <MdOutlineMicNone />
+              <VscSend />
             </div>
 
           </div>
           <p className='bottom-info'>
-            Gemini may display inaccurate info, including about people, so double-check its responses. <span style={{textDecoration:"underline",cursor:"pointer"}}>Your privacy and Gemini Apps</span>
-            </p>
+            Gemini may display inaccurate info, including about people, so double-check its responses. <span style={{ textDecoration: "underline", cursor: "pointer" }}>Your privacy and Gemini Apps</span>
+          </p>
         </div>
       </div>
     </div>
