@@ -5,8 +5,19 @@ import { IoBulbOutline, IoCodeSlashOutline } from "react-icons/io5";
 import { RiImageAddLine } from "react-icons/ri";
 import { MdOutlineMicNone } from "react-icons/md";
 import { VscSend } from "react-icons/vsc";
+import { useContext } from 'react';
+import {Context} from '../../context/Context'
 
 const Main = () => {
+
+  const{onSent,recentPromt,showResult,loading,resultData,setInput,input} = useContext(Context);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onSent();
+    }
+  };
+
   return (
     <div className='main'>
       <div className="nav">
@@ -38,11 +49,11 @@ const Main = () => {
         </div>
         <div className="main-bottom">
           <div className="search-box">
-            <input type="text" placeholder='Enter a prompt here' />
+            <input onChange={(e)=>setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here'  onKeyDown={handleKeyDown} />
             <div>
               <RiImageAddLine />
               <MdOutlineMicNone />
-              <VscSend />
+              <VscSend onClick={()=>onSent()} />
             </div>
 
           </div>
