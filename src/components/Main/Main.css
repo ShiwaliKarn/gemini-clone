@@ -184,20 +184,40 @@
 
 @keyframes rotate {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-  .rotate {
+.rotate {
     animation: rotate 2s linear infinite;
-  }
+}
 
 
-  .result-data p{
+.result-data p {
     font-size: 17px;
     font-weight: 300;
     line-height: 1.8;
-  }
+}
+
+@media (max-width:600px) {
+    .main-bottom input {
+        flex: none;
+        width: 150px;
+    }
+
+    .main-bottom svg {
+        font-size: 20px;
+    }
+
+    .search-box {
+        padding: 5px 34px;
+    }
+
+    .search-box div {
+        gap: 5px;
+    }
+}

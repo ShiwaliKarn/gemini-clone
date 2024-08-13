@@ -10,7 +10,7 @@ import { Context } from '../../context/Context'
 
 const Main = () => {
 
-  const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
+  const { onSent, recentPrompt, showResult, loading, resultData, setInput, input, newChat } = useContext(Context);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -21,7 +21,7 @@ const Main = () => {
   return (
     <div className='main'>
       <div className="nav">
-        <p>Gemini</p>
+        <p style={{cursor:"pointer"}} onClick={()=>newChat()}>Gemini</p>
         <img src="/profileIcon.png" alt="Profile Icon" />
       </div>
       <div className='main-container'>
@@ -75,7 +75,7 @@ const Main = () => {
             <div>
               <RiImageAddLine />
               <MdOutlineMicNone />
-              <VscSend onClick={() => onSent()} />
+              {input?<VscSend onClick={() => onSent()} />:null}
             </div>
 
           </div>
